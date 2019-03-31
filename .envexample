@@ -1,0 +1,7 @@
+PORT=80
+MAIN_HOST=diga.link
+STUDY_HOST=study.diga.link
+SENSE_HOST=sense.diga.localhost
+RECRUIT_HOST=recruit.diga.link
+LOGIN_HOST=login.diga.link
+RESEARCH_HOST=research.diga.link
