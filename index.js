@@ -10,11 +10,11 @@ let main = express();
 main.use(
   "/*",
   proxy({
-    target: "http://diga.link",
+    target: "https://diga.link",
     changeOrigin: true,
     ws: true,
     router: {
-      "diga.link:80": "http://diga.link:8000"
+      "diga.link": "http://diga.localhost:8000"
     }
   })
 );
@@ -23,11 +23,11 @@ let sense = express();
 sense.use(
   "/*",
   proxy({
-    target: "http://sense.diga.link",
+    target: "https://sense.diga.link",
     changeOrigin: true,
     ws: true,
     router: {
-      "sense.diga.link:80": "http://sense.diga.link:8000"
+      "sense.diga.link": "http://sense.diga.localhost:8000"
     }
   })
 );
@@ -36,11 +36,11 @@ let research = express();
 research.use(
   "/*",
   proxy({
-    target: "http://research.diga.link",
+    target: "https://research.diga.link",
     changeOrigin: true,
     ws: true,
     router: {
-      "research.diga.link:80": "http://research.diga.link:8000"
+      "research.diga.link": "http://research.diga.localhost:8000"
     }
   })
 );
@@ -49,11 +49,11 @@ let login = express();
 login.use(
   "/*",
   proxy({
-    target: "http://login.diga.link",
+    target: "https://login.diga.link",
     changeOrigin: true,
     ws: true,
     router: {
-      "login.diga.link:80": "http://login.diga.link:8000"
+      "login.diga.link": "http://login.diga.localhost:8000"
     }
   })
 );
@@ -62,11 +62,11 @@ let recruit = express();
 recruit.use(
   "/*",
   proxy({
-    target: "http://recruit.diga.link",
+    target: "https://recruit.diga.link",
     changeOrigin: true,
     ws: true,
     router: {
-      "recruit.diga.link:80": "http://recruit.diga.link:8000"
+      "recruit.diga.link": "http://recruit.diga.localhost:8000"
     }
   })
 );
@@ -75,11 +75,11 @@ let study = express();
 study.use(
   "/*",
   proxy({
-    target: "http://study.diga.link",
+    target: "https://study.diga.link",
     changeOrigin: true,
     ws: true,
     router: {
-      "study.diga.link:80": "http://study.diga.link:8000"
+      "study.diga.link": "http://study.diga.localhost:8000"
     }
   })
 );
