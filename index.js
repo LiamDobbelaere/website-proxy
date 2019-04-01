@@ -84,6 +84,19 @@ study.use(
   })
 );
 
+let toby = express();
+toby.use(
+  "/*",
+  proxy({
+    target: "https://toby.diga.link",
+    changeOrigin: true,
+    ws: true,
+    router: {
+      "toby.diga.link": "http://192.168.1.165:3000"
+    }
+  })
+);
+
 app.use(vhost(process.env.MAIN_HOST, main));
 app.use(vhost("www." + process.env.MAIN_HOST, main));
 app.use(vhost(process.env.STUDY_HOST, study));
@@ -91,5 +104,6 @@ app.use(vhost(process.env.SENSE_HOST, sense));
 app.use(vhost(process.env.RECRUIT_HOST, recruit));
 app.use(vhost(process.env.LOGIN_HOST, login));
 app.use(vhost(process.env.RESEARCH_HOST, research));
+app.use(vhost(process.env.TOBY_HOST, toby));
 
 app.listen(process.env.PORT);
