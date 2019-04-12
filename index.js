@@ -115,12 +115,11 @@ app.use(
   })
 );
 
-//Minifying
-app.use(
-  minify({
-    cache: __dirname + "/cache"
-  })
-);
+//app.use(
+//  minify({
+//    cache: __dirname + "/cache"
+//  })
+//);
 
 app.use(vhost(process.env.MAIN_HOST, main));
 app.use(vhost("www." + process.env.MAIN_HOST, main));
