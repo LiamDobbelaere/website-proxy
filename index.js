@@ -2,6 +2,10 @@ require("dotenv").config();
 
 // include dependencies
 let express = require("express");
+const minify = require("express-minify");
+const compression = require("compression");
+const morgan = require("morgan");
+const rfs = require("rotating-file-stream");
 let proxy = require("http-proxy-middleware");
 let vhost = require("vhost");
 
@@ -94,6 +98,27 @@ toby.use(
     router: {
       "toby.diga.link": "http://192.168.1.165:3000"
     }
+  })
+);
+
+//Logging
+const logStream = rfs("access.log", {
+  interval: "1d",
+  path: __dirname + "/log"
+});
+app.use(morgan("combined", { stream: logStream }));
+
+//Compression
+app.use(
+  compression({
+    threshold: 128
+  })
+);
+
+//Minifying
+app.use(
+  minify({
+    cache: __dirname + "/cache"
   })
 );
 
