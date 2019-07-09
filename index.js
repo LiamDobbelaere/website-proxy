@@ -23,6 +23,33 @@ main.use(
   })
 );
 
+let live = express();
+live.use(
+  "/*",
+  proxy({
+    target: "https://live.diga.link",
+    changeOrigin: true,
+    ws: true,
+    router: {
+      "live.diga.link": "http://localhost:8888"
+    }
+  })
+);
+
+let liveapi = express();
+liveapi.use(
+  "/*",
+  proxy({
+    target: "https://api.live.diga.link",
+    changeOrigin: true,
+    ws: true,
+    router: {
+      "api.live.diga.link": "http://localhost:8889"
+    }
+  })
+);
+
+
 let sense = express();
 sense.use(
   "/*",
@@ -129,5 +156,7 @@ app.use(vhost(process.env.RECRUIT_HOST, recruit));
 app.use(vhost(process.env.LOGIN_HOST, login));
 app.use(vhost(process.env.RESEARCH_HOST, research));
 app.use(vhost(process.env.TOBY_HOST, toby));
+app.use(vhost(process.env.LIVE_HOST, live));
+app.use(vhost(process.env.LIVE_API_HOST, liveapi));
 
 app.listen(process.env.PORT);
