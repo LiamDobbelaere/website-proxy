@@ -40,11 +40,11 @@ let liveapi = express();
 liveapi.use(
   "/*",
   proxy({
-    target: "https://api.live.diga.link",
+    target: "https://liveapi.diga.link",
     changeOrigin: true,
     ws: true,
     router: {
-      "api.live.diga.link": "http://localhost:8889"
+      "liveapi.diga.link": "http://localhost:8889"
     }
   })
 );
@@ -128,6 +128,21 @@ toby.use(
   })
 );
 
+
+let icn = express();
+icn.use(
+  "/*",
+  proxy({
+    target: "https://icn.diga.link",
+    changeOrigin: true,
+    ws: true,
+    router: {
+      "icn.diga.link": "http://icn.diga.localhost:8000"
+    }
+  })
+);
+
+
 //Logging
 const logStream = rfs("access.log", {
   interval: "1d",
@@ -158,5 +173,5 @@ app.use(vhost(process.env.RESEARCH_HOST, research));
 app.use(vhost(process.env.TOBY_HOST, toby));
 app.use(vhost(process.env.LIVE_HOST, live));
 app.use(vhost(process.env.LIVE_API_HOST, liveapi));
-
+app.use(vhost(process.env.ICN_HOST, icn));
 app.listen(process.env.PORT);
